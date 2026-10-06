@@ -1144,10 +1144,12 @@ Estrutura:
 
 ```
 scripts/
-└── ddl.sql
+├── ddl.sql
+└── azure-cli.sh
 ```
 
 O `ddl.sql` contém a criação das tabelas.
+O `azure-cli.sh` contém os comandos utilizados para criação dos recursos Azure, sem credenciais sensíveis armazenadas diretamente no arquivo.
 ---
 
 # 🏁 Conclusão
