@@ -87,8 +87,8 @@ O projeto implementa:
 
 A arquitetura do BookNest utiliza serviços PaaS da Microsoft Azure, com deploy automatizado através do GitHub Actions, persistência no Azure SQL Database e monitoramento através do Application Insights.
 
-![Macroarquitetura do BookNest](<img width="1536" height="1024" alt="Arquitetura Azure com CI_CD em GitHub" src="https://github.com/user-attachments/assets/77e91896-22e1-41b5-93f3-0ea1357ffe6b" />
-)
+<img width="1536" height="1024" alt="Arquitetura Azure com CI_CD em GitHub" src="https://github.com/user-attachments/assets/77e91896-22e1-41b5-93f3-0ea1357ffe6b" />
+
 
 ---
 
