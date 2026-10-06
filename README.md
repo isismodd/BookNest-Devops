@@ -85,43 +85,10 @@ O projeto implementa:
 
 # 🏗️ Macroarquitetura
 
-A arquitetura da solução é composta pelo GitHub, pipeline de CI/CD, aplicação Java hospedada no Azure App Service, Azure SQL Database e Application Insights.
+A arquitetura do BookNest utiliza serviços PaaS da Microsoft Azure, com deploy automatizado através do GitHub Actions, persistência no Azure SQL Database e monitoramento através do Application Insights.
 
-```text
-                         ┌─────────────────────┐
-                         │       GitHub        │
-                         │ Código + Workflow   │
-                         └──────────┬──────────┘
-                                    │
-                                    │ Push main
-                                    ▼
-                         ┌─────────────────────┐
-                         │   GitHub Actions    │
-                         │                     │
-                         │ Java 21             │
-                         │ Maven Build         │
-                         │ Deploy              │
-                         └──────────┬──────────┘
-                                    │
-                                    ▼
-┌──────────────┐         ┌─────────────────────┐
-│   Usuário    │ HTTPS   │ Azure App Service   │
-│  Navegador   │────────►│                     │
-└──────────────┘         │      BookNest       │
-                         │ Spring Boot / Java  │
-                         └──────┬────────┬─────┘
-                                │        │
-                           JDBC │        │ Telemetria
-                                ▼        ▼
-                  ┌───────────────┐   ┌─────────────────┐
-                  │   Azure SQL   │   │   Application   │
-                  │   Database    │   │    Insights     │
-                  │               │   │                 │
-                  │ USUARIOS      │   │ Monitoramento   │
-                  │ AUTORES       │   │ Logs / Métricas │
-                  │ LIVROS        │   │ Requisições     │
-                  └───────────────┘   └─────────────────┘
-```
+![Macroarquitetura do BookNest](<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/7b5d996d-977e-4cff-bf81-c91eaeec891d" />
+)
 
 ---
 
