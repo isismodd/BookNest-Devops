@@ -120,7 +120,7 @@ APP_SERVICE_PLAN="BookNest-mvc"
 LOCATION="chilecentral"
 RUNTIME="JAVA:21-java21"
 
-GITHUB_REPO_NAME="isismodd/Checkpoint05-Devops-JavaWebAPP"
+GITHUB_REPO_NAME="isismodd/BookNest-Devops"
 BRANCH="main"
 
 APP_INSIGHTS_NAME="ai-BookNest-mvc"
