@@ -6,6 +6,8 @@ O **BookNest** é um sistema de gerenciamento de biblioteca que permite o cadast
 
 A aplicação utiliza **Spring Boot**, **Thymeleaf**, **Spring Security**, **Spring Data JPA**, **Azure SQL Database**, **Azure App Service**, **Application Insights** e **GitHub Actions**.
 
+Link para acessar a aplicação: booknest-mvc-rm561497.azurewebsites.net 
+
 ---
 
 # 👩‍💻 Integrantes
