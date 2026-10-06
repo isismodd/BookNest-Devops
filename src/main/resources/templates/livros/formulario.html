@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Livro | BookNest</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="navbar-container">
+
+        <a class="logo" th:href="@{/}">
+            <span class="logo-icon">📚</span>
+            BookNest
+        </a>
+
+        <div class="nav-links">
+
+            <a th:href="@{/}">
+                Início
+            </a>
+
+            <a th:href="@{/autores}">
+                Autores
+            </a>
+
+            <a th:href="@{/livros}">
+                Livros
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<main class="container">
+
+    <div class="page-header">
+
+        <div class="page-title">
+
+            <h1 th:text="${livro.id == null ? 'Novo livro' : 'Editar livro'}">
+                Novo livro
+            </h1>
+
+            <p>
+                Preencha as informações do livro.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="form-card">
+
+        <form
+                th:action="@{/livros/salvar}"
+                th:object="${livro}"
+                method="post">
+
+            <input
+                    type="hidden"
+                    th:field="*{id}">
+
+            <div class="form-group">
+
+                <label for="titulo">
+                    Título *
+                </label>
+
+                <input
+                        id="titulo"
+                        class="form-control"
+                        type="text"
+                        th:field="*{titulo}"
+                        placeholder="Ex.: 1984"
+                        required>
+
+                <div
+                        class="field-error"
+                        th:if="${#fields.hasErrors('titulo')}"
+                        th:errors="*{titulo}">
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="isbn">
+                        ISBN
+                    </label>
+
+                    <input
+                            id="isbn"
+                            class="form-control"
+                            type="text"
+                            th:field="*{isbn}"
+                            placeholder="9780451524935">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="genero">
+                        Gênero
+                    </label>
+
+                    <input
+                            id="genero"
+                            class="form-control"
+                            type="text"
+                            th:field="*{genero}"
+                            placeholder="Ex.: Distopia">
+
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="anoPublicacao">
+                        Ano de publicação
+                    </label>
+
+                    <input
+                            id="anoPublicacao"
+                            class="form-control"
+                            type="number"
+                            th:field="*{anoPublicacao}"
+                            min="0"
+                            placeholder="1949">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="autor">
+                        Autor *
+                    </label>
+
+                    <select
+                            id="autor"
+                            class="form-control"
+                            th:field="*{autor.id}"
+                            required>
+
+                        <option value="">
+                            Selecione um autor
+                        </option>
+
+                        <option
+                                th:each="autor : ${autores}"
+                                th:value="${autor.id}"
+                                th:text="${autor.nome}">
+                        </option>
+
+                    </select>
+
+                    <div
+                            class="field-error"
+                            th:if="${#fields.hasErrors('autor')}"
+                            th:errors="*{autor}">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+
+                <a
+                        class="btn btn-secondary"
+                        th:href="@{/livros}">
+                    Cancelar
+                </a>
+
+                <button
+                        class="btn btn-primary"
+                        type="submit">
+                    Salvar livro
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Autor | BookNest</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="navbar-container">
+
+        <a class="logo" th:href="@{/}">
+            <span class="logo-icon">📚</span>
+            BookNest
+        </a>
+
+        <div class="nav-links">
+
+            <a th:href="@{/}">
+                Início
+            </a>
+
+            <a th:href="@{/autores}">
+                Autores
+            </a>
+
+            <a th:href="@{/livros}">
+                Livros
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<main class="container">
+
+    <div class="page-header">
+
+        <div class="page-title">
+
+            <h1 th:text="${autor.id == null ? 'Novo autor' : 'Editar autor'}">
+                Novo autor
+            </h1>
+
+            <p>
+                Preencha as informações do autor.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="form-card">
+
+        <form
+                th:action="@{/autores/salvar}"
+                th:object="${autor}"
+                method="post">
+
+            <input
+                    type="hidden"
+                    th:field="*{id}">
+
+            <div class="form-group">
+
+                <label for="nome">
+                    Nome *
+                </label>
+
+                <input
+                        id="nome"
+                        class="form-control"
+                        type="text"
+                        th:field="*{nome}"
+                        placeholder="Ex.: George Orwell"
+                        required>
+
+                <div
+                        class="field-error"
+                        th:if="${#fields.hasErrors('nome')}"
+                        th:errors="*{nome}">
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="nacionalidade">
+                    Nacionalidade
+                </label>
+
+                <input
+                        id="nacionalidade"
+                        class="form-control"
+                        type="text"
+                        th:field="*{nacionalidade}"
+                        placeholder="Ex.: Britânica">
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="dataNascimento">
+                    Data de nascimento
+                </label>
+
+                <input
+                        id="dataNascimento"
+                        class="form-control"
+                        type="date"
+                        th:field="*{dataNascimento}">
+
+            </div>
+
+            <div class="form-actions">
+
+                <a
+                        class="btn btn-secondary"
+                        th:href="@{/autores}">
+                    Cancelar
+                </a>
+
+                <button
+                        class="btn btn-primary"
+                        type="submit">
+                    Salvar autor
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+
+</body>
+</html>

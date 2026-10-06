@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cadastro | BookNest</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<div class="auth-page">
+
+    <section class="auth-brand">
+
+        <div class="auth-brand-content">
+
+            <div class="auth-brand-icon">📖</div>
+
+            <h1>BookNest</h1>
+
+            <p>
+                Crie sua conta e comece a organizar
+                sua biblioteca.
+            </p>
+
+        </div>
+
+    </section>
+
+    <main class="auth-content">
+
+        <div class="auth-box">
+
+            <h2>Criar conta</h2>
+
+            <p class="auth-subtitle">
+                Preencha seus dados para começar.
+            </p>
+
+            <div
+                    class="alert alert-error"
+                    th:if="${erro}"
+                    th:text="${erro}">
+            </div>
+
+            <form
+                    th:action="@{/cadastro}"
+                    th:object="${usuario}"
+                    method="post">
+
+                <div class="form-group">
+
+                    <label for="nome">
+                        Nome
+                    </label>
+
+                    <input
+                            id="nome"
+                            class="form-control"
+                            type="text"
+                            th:field="*{nome}"
+                            placeholder="Seu nome"
+                            required>
+
+                    <div
+                            class="field-error"
+                            th:if="${#fields.hasErrors('nome')}"
+                            th:errors="*{nome}">
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                            id="email"
+                            class="form-control"
+                            type="email"
+                            th:field="*{email}"
+                            placeholder="seuemail@email.com"
+                            required>
+
+                    <div
+                            class="field-error"
+                            th:if="${#fields.hasErrors('email')}"
+                            th:errors="*{email}">
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="senha">
+                        Senha
+                    </label>
+
+                    <input
+                            id="senha"
+                            class="form-control"
+                            type="password"
+                            th:field="*{senha}"
+                            placeholder="Crie uma senha"
+                            required>
+
+                    <div
+                            class="field-error"
+                            th:if="${#fields.hasErrors('senha')}"
+                            th:errors="*{senha}">
+                    </div>
+
+                </div>
+
+                <button
+                        class="btn btn-primary"
+                        type="submit">
+                    Criar conta
+                </button>
+
+            </form>
+
+            <div class="auth-footer">
+
+                Já possui uma conta?
+
+                <a th:href="@{/login}">
+                    Entrar
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Livros | BookNest</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="navbar-container">
+
+        <a class="logo" th:href="@{/}">
+            <span class="logo-icon">📚</span>
+            BookNest
+        </a>
+
+        <div class="nav-links">
+
+            <a th:href="@{/}">
+                Início
+            </a>
+
+            <a th:href="@{/autores}">
+                Autores
+            </a>
+
+            <a th:href="@{/livros}">
+                Livros
+            </a>
+
+            <form
+                    class="logout-form"
+                    th:action="@{/logout}"
+                    method="post">
+
+                <button
+                        class="btn-logout"
+                        type="submit">
+                    Sair
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<main class="container">
+
+    <div class="page-header">
+
+        <div class="page-title">
+
+            <h1>Livros</h1>
+
+            <p>
+                Gerencie os livros da sua biblioteca.
+            </p>
+
+        </div>
+
+        <a
+                class="btn btn-primary"
+                th:href="@{/livros/novo}">
+            + Novo livro
+        </a>
+
+    </div>
+
+    <div class="table-card">
+
+        <div
+                class="empty-state"
+                th:if="${#lists.isEmpty(livros)}">
+
+            Nenhum livro cadastrado ainda.
+
+        </div>
+
+        <table th:unless="${#lists.isEmpty(livros)}">
+
+            <thead>
+
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>ISBN</th>
+                <th>Gênero</th>
+                <th>Ano</th>
+                <th>Ações</th>
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            <tr th:each="livro : ${livros}">
+
+                <td th:text="${livro.titulo}">
+                    1984
+                </td>
+
+                <td th:text="${livro.autor != null ? livro.autor.nome : '-'}">
+                    George Orwell
+                </td>
+
+                <td th:text="${livro.isbn}">
+                    9780451524935
+                </td>
+
+                <td th:text="${livro.genero}">
+                    Distopia
+                </td>
+
+                <td th:text="${livro.anoPublicacao}">
+                    1949
+                </td>
+
+                <td>
+
+                    <div class="actions">
+
+                        <a
+                                class="btn btn-secondary btn-small"
+                                th:href="@{/livros/editar/{id}(id=${livro.id})}">
+                            Editar
+                        </a>
+
+                        <form
+                                th:action="@{/livros/excluir/{id}(id=${livro.id})}"
+                                method="post"
+                                onsubmit="return confirm('Deseja realmente excluir este livro?');">
+
+                            <button
+                                    class="btn btn-danger btn-small"
+                                    type="submit">
+                                Excluir
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</main>
+
+</body>
+</html>

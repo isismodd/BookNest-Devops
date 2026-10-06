@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BookNest</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="navbar-container">
+
+        <a class="logo" th:href="@{/}">
+            <span class="logo-icon">📚</span>
+            BookNest
+        </a>
+
+        <div class="nav-links">
+
+            <a th:href="@{/}">
+                Início
+            </a>
+
+            <a th:href="@{/autores}">
+                Autores
+            </a>
+
+            <a th:href="@{/livros}">
+                Livros
+            </a>
+
+            <form
+                    class="logout-form"
+                    th:action="@{/logout}"
+                    method="post">
+
+                <button
+                        class="btn-logout"
+                        type="submit">
+                    Sair
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<main class="container">
+
+    <section class="hero">
+
+        <h1>Minha Biblioteca 📖</h1>
+
+        <p>
+            Bem-vindo ao BookNest.
+            Gerencie seus autores e livros de forma simples
+            e mantenha sua biblioteca sempre organizada.
+        </p>
+
+    </section>
+
+    <div class="dashboard-grid">
+
+        <div class="dashboard-card">
+
+            <div class="card-icon">
+                ✍️
+            </div>
+
+            <h2>Autores cadastrados</h2>
+
+            <div
+                    class="dashboard-number"
+                    th:text="${totalAutores}">
+                0
+            </div>
+
+            <a
+                    class="btn btn-primary"
+                    th:href="@{/autores}">
+                Gerenciar autores
+            </a>
+
+        </div>
+
+        <div class="dashboard-card">
+
+            <div class="card-icon">
+                📚
+            </div>
+
+            <h2>Livros cadastrados</h2>
+
+            <div
+                    class="dashboard-number"
+                    th:text="${totalLivros}">
+                0
+            </div>
+
+            <a
+                    class="btn btn-primary"
+                    th:href="@{/livros}">
+                Gerenciar livros
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+</body>
+</html>
